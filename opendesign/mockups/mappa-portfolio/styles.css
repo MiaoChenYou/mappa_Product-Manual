@@ -133,11 +133,59 @@ img { display: block; max-width: 100%; }
   background: var(--ink);
   box-shadow: 0 20px 40px rgba(22, 42, 34, .14);
 }
-.phone-shell img { width: 100%; height: 100%; object-fit: contain; border-radius: 35px; }
+.phone-shell video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 35px;
+  object-fit: cover;
+  object-position: center;
+}
+.phone-landing-shade {
+  position: absolute;
+  inset: 42% 7px 7px;
+  border-radius: 0 0 35px 35px;
+  background: linear-gradient(180deg, transparent 0%, rgba(13,20,16,.2) 26%, rgba(10,17,13,.86) 100%);
+  pointer-events: none;
+}
+.phone-landing-copy {
+  position: absolute;
+  right: 32px;
+  bottom: 42px;
+  left: 32px;
+  z-index: 2;
+  color: #fafaf2;
+}
+.phone-landing-copy strong {
+  display: block;
+  font-size: 58px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: .95;
+}
+.phone-landing-copy p {
+  margin: 20px 0 0;
+  color: rgba(250,250,242,.94);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: .05em;
+}
+.phone-landing-copy span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  margin-top: 32px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #1f2421;
+  background: #edede5;
+  font-size: 14px;
+  font-weight: 500;
+}
 .cover-hint {
   position: absolute;
   right: 84px;
-  bottom: 52px;
+  bottom: 28px;
   color: var(--muted);
   font-size: 18px;
   letter-spacing: .18em;

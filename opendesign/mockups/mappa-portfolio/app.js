@@ -35,6 +35,10 @@
       slide.classList.toggle("is-active", i === next);
       slide.dataset.direction = direction > 0 ? "next" : direction < 0 ? "prev" : "direct";
       slide.setAttribute("aria-hidden", i === next ? "false" : "true");
+      slide.querySelectorAll("video").forEach((video) => {
+        if (i === next) video.play().catch(() => {});
+        else video.pause();
+      });
     });
     current = next;
     currentLabel.textContent = String(current + 1).padStart(2, "0");
