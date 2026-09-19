@@ -149,9 +149,12 @@
   function positionDsHotspots() {
     if (!dsImage || !dsStage) return;
     const stageRect = dsStage.getBoundingClientRect();
-    const scale = Math.min(stageRect.width / 1920, stageRect.height / 1080);
-    const offsetX = (stageRect.width - 1920 * scale) / 2;
-    const offsetY = (stageRect.height - 1080 * scale) / 2;
+    const mobileReadingMode = window.matchMedia("(max-width: 760px)").matches;
+    const scale = mobileReadingMode
+      ? dsImage.offsetWidth / 1920
+      : Math.min(stageRect.width / 1920, stageRect.height / 1080);
+    const offsetX = mobileReadingMode ? dsImage.offsetLeft : (stageRect.width - 1920 * scale) / 2;
+    const offsetY = mobileReadingMode ? dsImage.offsetTop : (stageRect.height - 1080 * scale) / 2;
     document.querySelectorAll(".ds-hotspot").forEach((button) => {
       button.style.left = (offsetX + Number(button.dataset.x) * scale) + "px";
       button.style.top = (offsetY + Number(button.dataset.y) * scale) + "px";

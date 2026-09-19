@@ -240,9 +240,11 @@
     <button data-go="10">10&nbsp; Demo</button><button data-go="11">11&nbsp; 下一步</button>
   </div>
 
-  <dialog id="sitemap-dialog" class="annex-dialog">
-    <div class="annex-toolbar"><div><small>APPENDIX A</small><h2>完整 Sitemap</h2></div><button data-close aria-label="關閉">×</button></div>
-    <div class="sitemap-stage"><img src="assets/sitemap.svg" alt="MAPPA 完整 Sitemap" /></div>
+  <dialog id="sitemap-dialog" class="annex-dialog sitemap-dialog">
+    <div class="sitemap-stage">
+      <img src="assets/sitemap.svg" alt="MAPPA 完整 Sitemap" />
+      <button class="sitemap-close" data-close aria-label="返回資訊架構頁">×</button>
+    </div>
   </dialog>
 
   <dialog id="design-system-dialog" class="annex-dialog design-system-dialog">
