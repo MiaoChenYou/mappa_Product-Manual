@@ -129,7 +129,11 @@
   };
 
   document.querySelectorAll("[data-open]").forEach((button) => {
-    button.addEventListener("click", () => dialogs[button.dataset.open]?.showModal());
+    button.addEventListener("click", () => {
+      const dialog = dialogs[button.dataset.open];
+      dialog?.showModal();
+      if (button.dataset.open === "design-system") requestAnimationFrame(positionDsHotspots);
+    });
   });
 
   document.querySelectorAll("dialog").forEach((dialog) => {
@@ -140,6 +144,22 @@
   });
 
   const dsImage = document.querySelector("#ds-image");
+  const dsStage = document.querySelector(".ds-stage");
+
+  function positionDsHotspots() {
+    if (!dsImage || !dsStage) return;
+    const stageRect = dsStage.getBoundingClientRect();
+    const scale = Math.min(stageRect.width / 1920, stageRect.height / 1080);
+    const offsetX = (stageRect.width - 1920 * scale) / 2;
+    const offsetY = (stageRect.height - 1080 * scale) / 2;
+    document.querySelectorAll(".ds-hotspot").forEach((button) => {
+      button.style.left = (offsetX + Number(button.dataset.x) * scale) + "px";
+      button.style.top = (offsetY + Number(button.dataset.y) * scale) + "px";
+      button.style.width = (Number(button.dataset.width) * scale) + "px";
+      button.style.height = (Number(button.dataset.height) * scale) + "px";
+    });
+  }
+
   const dsSources = {
     overview: ["assets/ds-overview.png", "MAPPA Design System 設計總覽"],
     states: ["assets/ds-states.png", "MAPPA 元件狀態規範"],
@@ -158,7 +178,7 @@
     });
   });
 
-  window.addEventListener("resize", fitCanvas);
+  window.addEventListener("resize", () => { fitCanvas(); positionDsHotspots(); });
   window.addEventListener("hashchange", () => goTo(indexFromHash()));
   fitCanvas();
   slides.forEach((slide) => slide.classList.remove("is-active"));
