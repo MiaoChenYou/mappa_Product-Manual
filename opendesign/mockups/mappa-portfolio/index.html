@@ -360,12 +360,153 @@
     <div class="ds-stage">
       <img id="ds-image" src="assets/ds-overview.png" alt="MAPPA Design System 設計總覽" />
       <button class="ds-mobile-close" data-close aria-label="關閉 Design System">×</button>
+
+      <div class="ds-mobile-content">
+        <section id="ds-mobile-overview" class="ds-mobile-panel is-active" data-ds-panel="overview" role="tabpanel">
+          <header class="ds-mobile-heading">
+            <small>MAPPA DEMO</small>
+            <h2>Design System</h2>
+            <p>以 Demo 實際使用的顏色、文字與元件尺寸為準。</p>
+          </header>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">01</span>
+            <h3>品牌色</h3>
+            <p>只保留 MAPPA 最具辨識度的三個顏色。</p>
+            <div class="ds-mobile-colors">
+              <div><i></i><b>MAPPA 綠</b><span>#0B5A38</span></div>
+              <div><i></i><b>節點橘</b><span>#E87543</span></div>
+              <div><i></i><b>冷白</b><span>#FFFEFA</span></div>
+            </div>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">02</span>
+            <h3>文字角色</h3>
+            <p>依照實際用途命名，讓每一層文字都有明確位置。</p>
+            <div class="ds-mobile-type-list">
+              <div><b>頁面標題</b><span>24 / 32 · Medium</span></div>
+              <div><b>文章標題</b><span>18 / 24 · Medium</span></div>
+              <div><b>內文</b><span>16 / 26 · Regular</span></div>
+              <div><b>操作文字</b><span>14 / 21 · Medium</span></div>
+              <div><b>輔助資訊</b><span>12 / 16 · Regular</span></div>
+            </div>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">03</span>
+            <h3>版面與元件尺寸</h3>
+            <p>以 390 × 844 mobile viewport 為設計基準。</p>
+            <div class="ds-mobile-metrics">
+              <span><b>20px</b>頁面左右留白</span>
+              <span><b>48px</b>主要區塊間距</span>
+              <span><b>16 / 24px</b>卡片圓角</span>
+              <span><b>48px</b>控制項高度</span>
+              <span><b>44px</b>最小點擊區</span>
+              <span><b>Full</b>膠囊圓角</span>
+            </div>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">04</span>
+            <h3>核心元件</h3>
+            <p>所有樣式均從 Demo 實際介面回推。</p>
+            <div class="ds-mobile-components">
+              <span class="is-primary">留下觀察</span>
+              <span class="is-secondary">從裝置選擇</span>
+              <span class="is-input">寫下你觀察到的事⋯</span>
+              <span class="is-nav"><b>首頁</b><b>地圖</b><b>＋</b><b>我的</b></span>
+            </div>
+          </article>
+        </section>
+
+        <section id="ds-mobile-states" class="ds-mobile-panel" data-ds-panel="states" role="tabpanel" hidden>
+          <header class="ds-mobile-heading">
+            <small>DS DETAIL — 01</small>
+            <h2>元件狀態</h2>
+            <p>用同一套視覺回應可操作、按下、停用與錯誤狀態。</p>
+          </header>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">01</span>
+            <h3>按鈕</h3>
+            <div class="ds-state-buttons">
+              <span>預設</span><span>按下</span><span>停用</span>
+            </div>
+            <p class="ds-mobile-note">主要行動使用 MAPPA 綠；停用時降低對比，不與可操作狀態競爭。</p>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">02</span>
+            <h3>輸入欄位</h3>
+            <div class="ds-state-inputs">
+              <div><small>預設</small><span>寫下你觀察到的事⋯</span></div>
+              <div class="is-focus"><small>輸入中</small><span>公園入口的風變涼了</span></div>
+              <div class="is-error"><small>錯誤</small><span>請確認必填內容</span></div>
+            </div>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">03</span>
+            <h3>媒體模式</h3>
+            <div class="ds-media-states">
+              <span class="is-active">相機</span><span>錄音</span><span>錄影</span>
+            </div>
+            <p class="ds-mobile-note">目前模式以實心綠顯示，其餘入口維持低彩度輪廓。</p>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">04</span>
+            <h3>底部導覽</h3>
+            <div class="ds-nav-state"><b class="is-active">首頁</b><b>地圖</b><b>＋</b><b>我的</b></div>
+            <p class="ds-mobile-note">選取項目加入淡綠底，固定保留 44px 以上的點擊範圍。</p>
+          </article>
+        </section>
+
+        <section id="ds-mobile-accessibility" class="ds-mobile-panel" data-ds-panel="accessibility" role="tabpanel" hidden>
+          <header class="ds-mobile-heading">
+            <small>DS DETAIL — 02</small>
+            <h2>無障礙與文字</h2>
+            <p>確保介面清楚可讀，也讓內容語氣維持觀察而非評斷。</p>
+          </header>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">01</span>
+            <h3>顏色對比</h3>
+            <div class="ds-contrast-list">
+              <div><i class="is-green"></i><span>MAPPA 綠／冷白</span><b>主要操作</b></div>
+              <div><i class="is-ink"></i><span>深色文字／冷白</span><b>閱讀內容</b></div>
+              <div><i class="is-orange"></i><span>節點橘／冷白</span><b>提示用途</b></div>
+            </div>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">02</span>
+            <h3>操作可及性</h3>
+            <div class="ds-accessibility-metrics">
+              <span><b>44px</b>最小觸控區</span>
+              <span><b>48px</b>主要控制高度</span>
+              <span><b>16px</b>內文基準</span>
+            </div>
+          </article>
+
+          <article class="ds-mobile-card">
+            <span class="ds-mobile-number">03</span>
+            <h3>內容原則</h3>
+            <ul class="ds-content-principles">
+              <li><b>觀察先於評斷</b><span>先描述看見與感受到的事。</span></li>
+              <li><b>句子短而清楚</b><span>降低閱讀負擔，保留自然語氣。</span></li>
+              <li><b>時間與地點完整</b><span>讓片段日後仍能被理解與回望。</span></li>
+            </ul>
+          </article>
+        </section>
+      </div>
       <div class="ds-hotspots">
         <div class="ds-tabs" role="tablist" aria-label="Design System 頁面" data-x="1306" data-y="43">
           <span class="ds-tab-indicator" aria-hidden="true"></span>
-          <button class="ds-tab is-active" data-ds="overview" role="tab" aria-selected="true">設計總覽</button>
-          <button class="ds-tab" data-ds="states" role="tab" aria-selected="false">元件狀態</button>
-          <button class="ds-tab" data-ds="accessibility" role="tab" aria-selected="false">無障礙與文字</button>
+          <button class="ds-tab is-active" data-ds="overview" role="tab" aria-selected="true" aria-controls="ds-mobile-overview">設計總覽</button>
+          <button class="ds-tab" data-ds="states" role="tab" aria-selected="false" aria-controls="ds-mobile-states">元件狀態</button>
+          <button class="ds-tab" data-ds="accessibility" role="tab" aria-selected="false" aria-controls="ds-mobile-accessibility">無障礙與文字</button>
         </div>
         <button class="ds-hotspot ds-return" data-close data-x="1680" data-y="43" data-width="181" data-height="48" aria-label="返回視覺系統"></button>
       </div>

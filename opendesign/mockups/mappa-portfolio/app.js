@@ -444,6 +444,7 @@
   const dsStage = document.querySelector(".ds-stage");
   const dsTabs = document.querySelector(".ds-tabs");
   const dsIndicator = document.querySelector(".ds-tab-indicator");
+  const dsMobilePanels = document.querySelectorAll("[data-ds-panel]");
 
   function updateDsIndicator() {
     const activeTab = document.querySelector(".ds-tab.is-active");
@@ -505,6 +506,14 @@
       tab.classList.toggle("is-active", active);
       tab.setAttribute("aria-selected", String(active));
     });
+    dsMobilePanels.forEach((panel) => {
+      const active = panel.dataset.dsPanel === button.dataset.ds;
+      panel.classList.toggle("is-active", active);
+      panel.hidden = !active;
+    });
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      dsStage?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
     updateDsIndicator();
 
     if (dsImage.getAttribute("src") === src) return;

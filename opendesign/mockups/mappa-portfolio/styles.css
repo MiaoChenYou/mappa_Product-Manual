@@ -599,6 +599,7 @@ img { display: block; max-width: 100%; }
   outline-offset: -3px;
   border-radius: 999px;
 }
+.ds-mobile-content { display: none; }
 .ds-mobile-close { display: none; }
 
 .slide.is-active .reveal-group > *,
@@ -1067,7 +1068,7 @@ img { display: block; max-width: 100%; }
   /* Iteration */
   .iteration-hero h2 { font-size: 31px; }
   .iteration-grid { position: static; display: grid; grid-template-columns: 1fr; gap: 28px; height: auto; margin-top: 30px; }
-  .iteration-before img { width: auto; max-width: 100%; height: 330px; border: 0; background: transparent; box-shadow: none; }
+  .iteration-before img { width: auto; max-width: 100%; height: 330px; margin-inline: auto; border: 0; background: transparent; box-shadow: none; }
   .iteration-grid figcaption { margin-top: 8px; font-size: 12px; }
   .iteration-decision { padding: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .iteration-label { margin-bottom: 10px; font-size: 12px; }
@@ -1198,8 +1199,9 @@ img { display: block; max-width: 100%; }
   .design-system-dialog { background: #eef1ef; }
   .ds-stage {
     display: block;
-    overflow: auto;
-    padding-top: 72px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 72px 14px 28px;
     background: #eef1ef;
     overscroll-behavior: contain;
   }
@@ -1213,16 +1215,206 @@ img { display: block; max-width: 100%; }
     backdrop-filter: blur(14px);
     content: "";
   }
-  .ds-stage img {
-    width: 1000px;
-    height: auto;
-    max-width: none;
-    margin: 0;
-    justify-self: start;
-    align-self: start;
-    object-position: left top;
+  .ds-stage > #ds-image { display: none; }
+  .ds-mobile-content { display: block; width: 100%; max-width: 620px; margin: 0 auto; }
+  .ds-mobile-panel { display: grid; gap: 14px; padding-top: 16px; }
+  .ds-mobile-panel[hidden] { display: none; }
+  .ds-mobile-heading { padding: 18px 4px 6px; }
+  .ds-mobile-heading small {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--forest);
+    font-size: 11px;
+    font-weight: 650;
+    letter-spacing: .14em;
   }
-  .ds-hotspots { position: fixed; inset: 0; }
+  .ds-mobile-heading h2 {
+    margin: 0;
+    font-size: clamp(27px, 8vw, 34px);
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -.025em;
+  }
+  .ds-mobile-heading p {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .ds-mobile-card {
+    padding: 18px;
+    border: 1px solid rgba(11, 90, 56, .1);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 10px 28px rgba(23, 34, 30, .055);
+  }
+  .ds-mobile-number {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--forest);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+  }
+  .ds-mobile-card h3 { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.35; }
+  .ds-mobile-card > p {
+    margin: 4px 0 15px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .ds-mobile-colors { display: grid; gap: 10px; }
+  .ds-mobile-colors > div {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    min-height: 44px;
+    gap: 12px;
+  }
+  .ds-mobile-colors i { width: 44px; height: 44px; border-radius: 13px; background: #0b5a38; }
+  .ds-mobile-colors > div:nth-child(2) i { background: #e87543; }
+  .ds-mobile-colors > div:nth-child(3) i { border: 1px solid var(--border); background: #fffefa; }
+  .ds-mobile-colors b { font-size: 13px; font-weight: 600; }
+  .ds-mobile-colors span,
+  .ds-mobile-type-list span { color: var(--muted); font-size: 11px; }
+  .ds-mobile-type-list { display: grid; gap: 0; }
+  .ds-mobile-type-list > div {
+    display: flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-bottom: 1px solid rgba(11, 90, 56, .08);
+  }
+  .ds-mobile-type-list > div:last-child { border-bottom: 0; }
+  .ds-mobile-type-list b { font-size: 13px; font-weight: 550; }
+  .ds-mobile-metrics,
+  .ds-accessibility-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .ds-mobile-metrics span,
+  .ds-accessibility-metrics span {
+    display: grid;
+    min-height: 62px;
+    align-content: center;
+    gap: 3px;
+    padding: 10px 12px;
+    color: var(--muted);
+    border-radius: 13px;
+    background: #f1f4f1;
+    font-size: 10px;
+  }
+  .ds-mobile-metrics b,
+  .ds-accessibility-metrics b { color: var(--forest); font-size: 13px; font-weight: 650; }
+  .ds-mobile-components { display: grid; gap: 9px; }
+  .ds-mobile-components > span {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .ds-mobile-components .is-primary { color: #fffefa; background: var(--forest); }
+  .ds-mobile-components .is-secondary { color: var(--forest); border: 1px solid var(--forest); }
+  .ds-mobile-components .is-input {
+    justify-content: flex-start;
+    padding: 0 15px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    font-weight: 400;
+  }
+  .ds-mobile-components .is-nav,
+  .ds-nav-state {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 52px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(23, 34, 30, .06);
+  }
+  .ds-mobile-components .is-nav b,
+  .ds-nav-state b {
+    display: grid;
+    min-width: 0;
+    place-items: center;
+    color: var(--forest);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 550;
+  }
+  .ds-mobile-components .is-nav b:first-child,
+  .ds-nav-state b.is-active { background: #e5efea; }
+  .ds-state-buttons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .ds-state-buttons span {
+    display: grid;
+    min-height: 44px;
+    place-items: center;
+    color: #fffefa;
+    border-radius: 999px;
+    background: var(--forest);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .ds-state-buttons span:nth-child(2) { background: #07482d; }
+  .ds-state-buttons span:nth-child(3) { color: #8c9791; background: #e5e9e6; }
+  .ds-state-inputs { display: grid; gap: 10px; }
+  .ds-state-inputs > div { display: grid; gap: 5px; }
+  .ds-state-inputs small { color: var(--muted); font-size: 10px; }
+  .ds-state-inputs span {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    padding: 0 13px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 11px;
+  }
+  .ds-state-inputs .is-focus span { border-color: var(--forest); box-shadow: 0 0 0 2px rgba(11, 90, 56, .09); }
+  .ds-state-inputs .is-error span { color: #a94a3f; border-color: #c96e62; }
+  .ds-media-states { display: flex; gap: 10px; }
+  .ds-media-states span {
+    display: grid;
+    width: 52px;
+    min-height: 44px;
+    place-items: center;
+    color: var(--forest);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 10px;
+  }
+  .ds-media-states span.is-active { color: #fffefa; border-color: var(--forest); background: var(--forest); }
+  .ds-mobile-card > .ds-mobile-note { margin: 12px 0 0; font-size: 11px; }
+  .ds-contrast-list { display: grid; gap: 8px; }
+  .ds-contrast-list > div {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    min-height: 48px;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 9px;
+    border-radius: 12px;
+    background: #f1f4f1;
+  }
+  .ds-contrast-list i { width: 30px; height: 30px; border-radius: 9px; }
+  .ds-contrast-list i.is-green { background: #0b5a38; }
+  .ds-contrast-list i.is-ink { background: #17221e; }
+  .ds-contrast-list i.is-orange { background: #e87543; }
+  .ds-contrast-list span { font-size: 11px; }
+  .ds-contrast-list b { color: var(--muted); font-size: 9px; font-weight: 550; }
+  .ds-content-principles { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .ds-content-principles li {
+    display: grid;
+    gap: 3px;
+    padding: 12px 13px;
+    border-radius: 13px;
+    background: #f1f4f1;
+  }
+  .ds-content-principles b { color: var(--forest); font-size: 12px; font-weight: 650; }
+  .ds-content-principles span { color: var(--muted); font-size: 11px; line-height: 1.55; }
+  .ds-hotspots { position: fixed; inset: 0; z-index: 7; }
   .ds-tabs {
     position: fixed !important;
     top: 12px !important;
