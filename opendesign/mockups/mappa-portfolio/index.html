@@ -265,10 +265,13 @@
   <dialog id="design-system-dialog" class="annex-dialog design-system-dialog">
     <div class="ds-stage">
       <img id="ds-image" src="assets/ds-overview.png" alt="MAPPA Design System 設計總覽" />
-      <div class="ds-hotspots" role="tablist" aria-label="Design System 頁面">
-        <button class="ds-hotspot is-active" data-ds="overview" data-x="1306" data-y="43" data-width="121" data-height="48" aria-label="顯示設計總覽"></button>
-        <button class="ds-hotspot" data-ds="states" data-x="1427" data-y="43" data-width="113" data-height="48" aria-label="顯示元件狀態"></button>
-        <button class="ds-hotspot" data-ds="accessibility" data-x="1540" data-y="43" data-width="124" data-height="48" aria-label="顯示無障礙與文字"></button>
+      <div class="ds-hotspots">
+        <div class="ds-tabs" role="tablist" aria-label="Design System 頁面" data-x="1306" data-y="43">
+          <span class="ds-tab-indicator" aria-hidden="true"></span>
+          <button class="ds-tab is-active" data-ds="overview" role="tab" aria-selected="true">設計總覽</button>
+          <button class="ds-tab" data-ds="states" role="tab" aria-selected="false">元件狀態</button>
+          <button class="ds-tab" data-ds="accessibility" role="tab" aria-selected="false">無障礙與文字</button>
+        </div>
         <button class="ds-hotspot ds-return" data-close data-x="1680" data-y="43" data-width="181" data-height="48" aria-label="返回視覺系統"></button>
       </div>
     </div>

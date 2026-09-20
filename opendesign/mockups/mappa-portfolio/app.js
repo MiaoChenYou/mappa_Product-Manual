@@ -169,6 +169,15 @@
 
   const dsImage = document.querySelector("#ds-image");
   const dsStage = document.querySelector(".ds-stage");
+  const dsTabs = document.querySelector(".ds-tabs");
+  const dsIndicator = document.querySelector(".ds-tab-indicator");
+
+  function updateDsIndicator() {
+    const activeTab = document.querySelector(".ds-tab.is-active");
+    if (!activeTab || !dsIndicator) return;
+    dsIndicator.style.width = Math.max(0, activeTab.offsetWidth - 6) + "px";
+    dsIndicator.style.transform = `translateX(${activeTab.offsetLeft}px)`;
+  }
 
   function positionDsHotspots() {
     if (!dsImage || !dsStage) return;
@@ -188,6 +197,12 @@
       button.style.width = (Number(button.dataset.width) * scale) + "px";
       button.style.height = (Number(button.dataset.height) * scale) + "px";
     });
+    if (dsTabs) {
+      dsTabs.style.left = (offsetX + Number(dsTabs.dataset.x) * scale) + "px";
+      dsTabs.style.top = (offsetY + Number(dsTabs.dataset.y) * scale) + "px";
+      dsTabs.style.transform = `scale(${scale})`;
+    }
+    updateDsIndicator();
   }
 
   function scheduleDsHotspots() {
@@ -207,16 +222,60 @@
     accessibility: ["assets/ds-accessibility.png", "MAPPA 無障礙與文字規範"]
   };
 
-  document.querySelectorAll("[data-ds]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const [src, alt] = dsSources[button.dataset.ds];
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        dsImage.animate([{ opacity: .25, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 260, easing: "ease-out" });
-      }
+  let dsSwitchToken = 0;
+
+  async function switchDsImage(button) {
+    const [src, alt] = dsSources[button.dataset.ds];
+    const tabs = document.querySelectorAll(".ds-tab[data-ds]");
+    tabs.forEach((tab) => {
+      const active = tab === button;
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", String(active));
+    });
+    updateDsIndicator();
+
+    if (dsImage.getAttribute("src") === src) return;
+
+    const token = ++dsSwitchToken;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    dsImage.getAnimations().forEach((animation) => animation.cancel());
+
+    if (reducedMotion) {
       dsImage.src = src;
       dsImage.alt = alt;
-      document.querySelectorAll("[data-ds]").forEach((tab) => tab.classList.toggle("is-active", tab === button));
-    });
+      scheduleDsHotspots();
+      return;
+    }
+
+    const currentOpacity = Number.parseFloat(getComputedStyle(dsImage).opacity) || 1;
+    const fadeOut = dsImage.animate(
+      [{ opacity: currentOpacity }, { opacity: 0 }],
+      { duration: 90, easing: "cubic-bezier(.2, .72, .2, 1)", fill: "forwards" }
+    );
+    await fadeOut.finished.catch(() => {});
+    if (token !== dsSwitchToken) return;
+
+    dsImage.style.opacity = "0";
+    fadeOut.cancel();
+    dsImage.src = src;
+    dsImage.alt = alt;
+    await dsImage.decode?.().catch(() => {});
+    if (token !== dsSwitchToken) return;
+
+    scheduleDsHotspots();
+    const fadeIn = dsImage.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 150, easing: "cubic-bezier(.2, .72, .2, 1)", fill: "forwards" }
+    );
+    await fadeIn.finished.catch(() => {});
+    if (token === dsSwitchToken) {
+      dsImage.style.removeProperty("opacity");
+      fadeIn.cancel();
+    }
+  }
+
+  document.querySelectorAll(".ds-tab[data-ds]").forEach((button) => {
+    button.addEventListener("click", () => switchDsImage(button));
   });
 
   window.addEventListener("resize", () => { fitCanvas(); scheduleDsHotspots(); });

@@ -419,6 +419,51 @@ img { display: block; max-width: 100%; }
 .ds-hotspots { position: absolute; inset: 0; pointer-events: none; }
 .ds-hotspot { position: absolute; z-index: 3; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer; pointer-events: auto; }
 .ds-hotspot:focus-visible { outline: 3px solid rgba(232, 117, 67, .72); outline-offset: 3px; }
+.ds-tabs {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 121px 113px 124px;
+  width: 358px;
+  height: 48px;
+  overflow: hidden;
+  border: 1px solid #dce4df;
+  border-radius: 999px;
+  background: rgba(255, 254, 250, .98);
+  pointer-events: auto;
+  transform-origin: left top;
+  isolation: isolate;
+}
+.ds-tab-indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 0;
+  height: 40px;
+  border-radius: 999px;
+  background: #e5efea;
+  transition:
+    width 300ms cubic-bezier(.2, .78, .2, 1),
+    transform 300ms cubic-bezier(.2, .78, .2, 1);
+  will-change: width, transform;
+}
+.ds-tab {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 0 10px;
+  color: #0b5a38;
+  border: 0;
+  background: transparent;
+  font: 600 12px/1 "Noto Sans TC", "PingFang TC", sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ds-tab:focus-visible {
+  outline: 3px solid rgba(232, 117, 67, .72);
+  outline-offset: -3px;
+  border-radius: 999px;
+}
 
 .slide.is-active .reveal-group > *,
 .slide.is-active .stagger > *,
