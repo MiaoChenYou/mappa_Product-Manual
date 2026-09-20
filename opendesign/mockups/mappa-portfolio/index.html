@@ -256,9 +256,55 @@
   </div>
 
   <dialog id="sitemap-dialog" class="annex-dialog sitemap-dialog">
-    <div class="sitemap-stage">
-      <img src="assets/sitemap.svg" alt="MAPPA 完整 Sitemap" />
-      <button class="sitemap-close" data-close aria-label="返回資訊架構頁">×</button>
+    <div class="sitemap-shell">
+      <header class="sitemap-toolbar">
+        <div class="sitemap-brand">
+          <span class="sitemap-brand-mark">MAPPA</span>
+          <div class="sitemap-title">
+            <small>APPENDIX A / INFORMATION ARCHITECTURE</small>
+            <h2>完整 Sitemap</h2>
+          </div>
+        </div>
+        <button class="sitemap-close" data-close aria-label="返回資訊架構頁">×</button>
+      </header>
+
+      <div class="sitemap-workspace">
+        <aside class="sitemap-sidebar" aria-label="Sitemap 快速定位">
+          <span class="sitemap-sidebar-number">01</span>
+          <h3>從進入 MAPPA<br />到留下觀察</h3>
+          <p>依照使用情境快速定位，放大閱讀各流程與功能細節。</p>
+          <span class="sitemap-sidebar-label">快速定位</span>
+          <div class="sitemap-section-list">
+            <button class="is-active" data-map-target="overview" aria-pressed="true">完整架構</button>
+            <button data-map-target="entry" aria-pressed="false">Landing 與登入</button>
+            <button data-map-target="home" aria-pressed="false">首頁與探索</button>
+            <button data-map-target="map" aria-pressed="false">地圖與地點</button>
+            <button data-map-target="record" aria-pressed="false">快速紀錄</button>
+            <button data-map-target="profile" aria-pressed="false">個人檔案</button>
+          </div>
+        </aside>
+
+        <div id="sitemap-viewport" class="sitemap-viewport" tabindex="0" aria-label="MAPPA Sitemap，可拖曳與縮放">
+          <div id="sitemap-canvas" class="sitemap-canvas">
+            <img id="sitemap-image" src="assets/sitemap.svg" alt="MAPPA 完整 Sitemap" draggable="false" />
+          </div>
+
+          <div class="sitemap-drag-hint" aria-hidden="true">
+            <span>↔</span>
+            <b>按住拖曳，滾動或雙指縮放</b>
+          </div>
+          <span id="sitemap-mode" class="sitemap-mode">全覽模式</span>
+
+          <div class="sitemap-zoom-control" aria-label="Sitemap 縮放控制">
+            <button data-sitemap-action="zoom-out" aria-label="縮小 Sitemap">−</button>
+            <output id="sitemap-zoom-value" aria-live="polite">100%</output>
+            <button data-sitemap-action="zoom-in" aria-label="放大 Sitemap">＋</button>
+            <button class="sitemap-fit" data-sitemap-action="fit" aria-label="適合畫面">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </dialog>
 
