@@ -15,22 +15,27 @@
     <section class="slide is-active cover" data-slide="1" aria-label="01 MAPPA 封面">
       <div class="canvas">
         <div class="cover-copy reveal-group">
-          <p class="eyebrow">個人專案 · 社群</p>
+          <p class="eyebrow">PROJECT OVERVIEW</p>
           <h1>MAPPA</h1>
-          <p class="cover-lead">把觀察記錄在地圖上，<br />累積地點回憶的慢節奏社群。</p>
-          <p class="cover-meta">繆承祐 — 個人專案<br />Product Concept · UX Flow · UI Design · AI Collaboration · Front-end Demo</p>
+          <p class="cover-summary">一個以地點為索引，<br />讓朋友共同累積日常觀察與回憶的慢節奏社群。</p>
+          <dl class="cover-overview">
+            <div><dt>DESIGN CHALLENGE</dt><dd>社群讓資訊流動得更快，我們卻更少停下來看看身邊。</dd></div>
+            <div><dt>CORE EXPERIENCE</dt><dd>觀察 → 確認地點 → 留下記錄 → 回看共同回憶</dd></div>
+            <div><dt>ROLE</dt><dd>Product Concept · UX Flow · UI Design · Design System · Front-end Demo</dd></div>
+            <div><dt>STATUS</dt><dd>可操作 Demo · 核心假設待使用者驗證</dd></div>
+          </dl>
         </div>
         <div class="cover-visual reveal-media">
           <img class="cover-ring" src="assets/cover-circle.svg" alt="" />
-          <div class="phone-shell">
-            <video autoplay loop muted playsinline preload="auto" poster="assets/cover-landing.png" aria-label="MAPPA 動態 Landing Page">
-              <source src="assets/landing.mp4" type="video/mp4" />
-            </video>
-            <div class="phone-landing-shade" aria-hidden="true"></div>
-            <div class="phone-landing-copy">
-              <strong>MAPPA</strong>
-              <p>把走過的地方，<br />種成一棵會長大的記憶。</p>
-              <span>開始探索 →</span>
+          <div class="phone-shell" aria-label="MAPPA 主要介面輪播">
+            <div class="phone-carousel" aria-live="off">
+              <img class="phone-screen is-current" src="assets/10-discover.png" alt="MAPPA 首頁：朋友的新發現" data-screen="首頁" />
+              <img class="phone-screen" src="assets/cover-map-demo.png" alt="MAPPA 地圖頁：從身邊地點開始探索" data-screen="地圖頁" />
+              <img class="phone-screen" src="assets/10-record.png" alt="MAPPA 快速紀錄：留下當下的觀察" data-screen="快速紀錄" />
+              <img class="phone-screen" src="assets/cover-profile.png" alt="MAPPA 我的頁面：回看個人觀察與成就" data-screen="我的" />
+            </div>
+            <div class="phone-carousel-status" aria-hidden="true">
+              <span class="is-current"></span><span></span><span></span><span></span>
             </div>
           </div>
         </div>
@@ -68,7 +73,7 @@
           <article><img src="assets/03-traffic-exposure.png" alt="" /><h3>流量與曝光</h3></article>
           <article><img src="assets/03-public-feedback.png" alt="" /><h3>公開回饋</h3></article>
         </div>
-        <p class="closing-question reveal-group">我不想判斷這種娛樂是好是壞，而是想探索另一種可能：如果社群不以爭取注意力為核心，反而鼓勵人慢下來、多看看身邊，會發生什麼？</p>
+        <p class="closing-question reveal-group"><span>我想探索另一種可能：</span><span>如果社群不以爭取注意力為核心，反而鼓勵人慢下來、多看看身邊，會發生什麼？</span></p>
         
       </div>
     </section>
@@ -132,18 +137,28 @@
     <section class="slide" data-slide="7" aria-label="07 體驗迭代">
       <div class="canvas">
         <header class="slide-header"><span>MAPPA</span><span>04 / ITERATING THE EXPERIENCE</span></header>
-        <div class="hero-copy reveal-group"><h2>AI 加速初稿，手動微調視覺效果</h2></div>
+        <div class="hero-copy iteration-hero reveal-group"><h2>從制式表單，調整成以觀察為起點的紀錄流程</h2></div>
         <div class="iteration-grid stagger">
           <figure class="iteration-before"><img src="assets/07-before.png" alt="早期線框" /><figcaption>BEFORE / 早期線框</figcaption></figure>
-          <div class="iteration-copy">
-            <p class="eyebrow">WHY / 重新承接視覺脈絡</p>
-            <h3>初版布局較制式，<br />無法呈現 MAPPA 的視覺風格。</h3>
-            <p class="emphasis">以 AI × Figma 快速生成線框初稿，再依視覺規範溝通調整，最後手動微調層級、間距與細節。</p>
+          <div class="iteration-decision">
+            <p class="iteration-label">PROBLEM / 初版問題</p>
+            <h3>所有欄位權重接近，<br />畫面更像是在填寫表單。</h3>
+            <p class="iteration-explain">使用者不容易判斷第一步該做什麼，影像、文字與地點之間也缺少清楚的操作順序。</p>
+            <div class="iteration-rule"></div>
+            <p class="iteration-label">DESIGN DECISION / 設計調整</p>
+            <div class="iteration-decisions">
+              <div><i>1</i><strong>放大媒體預覽</strong><span>讓剛記錄的片段先成為畫面焦點。</span></div>
+              <div><i>2</i><strong>收斂媒體入口</strong><span>將拍照、錄音與錄影整理成模式切換。</span></div>
+              <div><i>3</i><strong>重排操作順序</strong><span>依媒體、描述、地點與下一步往下完成。</span></div>
+            </div>
           </div>
-          <figure class="iteration-wire"><img src="assets/07-wireframe.png" alt="Figma 調整後線框" /><figcaption>Figma / 調整線框</figcaption></figure>
-          <img class="iteration-arrow" src="assets/07-arrow.svg" alt="" />
-          <figure class="iteration-after"><img src="assets/07-after.png" alt="MAPPA 實作畫面" /><figcaption>DEMO / 實作畫面</figcaption></figure>
+          <div class="iteration-after-flow">
+            <figure class="iteration-wire"><img src="assets/07-wireframe.png" alt="Figma 調整後線框" /><figcaption>WIREFRAME</figcaption></figure>
+            <span class="iteration-arrow" aria-hidden="true">→</span>
+            <figure class="iteration-after"><img src="assets/07-after.png" alt="MAPPA 實作畫面" /><figcaption>DEMO / 實作畫面</figcaption></figure>
+          </div>
         </div>
+        <aside class="iteration-method reveal-group"><small>METHOD / AI × FIGMA</small><p>以 AI 快速產出 Wireframe 初稿；<strong>資訊層級、操作順序、間距與元件狀態</strong>，由我依使用情境與 MAPPA Design System 手動調整。</p></aside>
         
       </div>
     </section>

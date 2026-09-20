@@ -13,6 +13,29 @@
   let current = indexFromHash();
   let wheelLock = false;
   let touchStart = null;
+  const coverScreens = [...document.querySelectorAll(".phone-screen")];
+  const coverDots = [...document.querySelectorAll(".phone-carousel-status span")];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let coverScreenIndex = 0;
+  let coverTimer = null;
+
+  function showCoverScreen(index) {
+    if (!coverScreens.length) return;
+    coverScreenIndex = (index + coverScreens.length) % coverScreens.length;
+    coverScreens.forEach((screen, i) => {
+      const active = i === coverScreenIndex;
+      screen.classList.toggle("is-current", active);
+      screen.setAttribute("aria-hidden", active ? "false" : "true");
+    });
+    coverDots.forEach((dot, i) => dot.classList.toggle("is-current", i === coverScreenIndex));
+  }
+
+  function syncCoverCarousel() {
+    window.clearInterval(coverTimer);
+    coverTimer = null;
+    if (current !== 0 || reduceMotion.matches || coverScreens.length < 2) return;
+    coverTimer = window.setInterval(() => showCoverScreen(coverScreenIndex + 1), 2000);
+  }
 
   function fitCanvas() {
     const viewportWidth = document.documentElement.clientWidth;
@@ -45,6 +68,7 @@
     progress.style.setProperty("--progress", String((current + 1) / total));
     history.replaceState(null, "", `#${current + 1}`);
     updateMenu();
+    syncCoverCarousel();
   }
 
   function step(direction) {
@@ -182,6 +206,7 @@
   });
 
   window.addEventListener("resize", () => { fitCanvas(); positionDsHotspots(); });
+  reduceMotion.addEventListener?.("change", syncCoverCarousel);
   window.addEventListener("hashchange", () => goTo(indexFromHash()));
   fitCanvas();
   slides.forEach((slide) => slide.classList.remove("is-active"));
