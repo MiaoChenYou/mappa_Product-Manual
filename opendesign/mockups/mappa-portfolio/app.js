@@ -156,7 +156,7 @@
     button.addEventListener("click", () => {
       const dialog = dialogs[button.dataset.open];
       dialog?.showModal();
-      if (button.dataset.open === "design-system") requestAnimationFrame(positionDsHotspots);
+      if (button.dataset.open === "design-system") scheduleDsHotspots();
     });
   });
 
@@ -173,18 +173,32 @@
   function positionDsHotspots() {
     if (!dsImage || !dsStage) return;
     const stageRect = dsStage.getBoundingClientRect();
+    const imageRect = dsImage.getBoundingClientRect();
     const mobileReadingMode = window.matchMedia("(max-width: 760px)").matches;
     const scale = mobileReadingMode
-      ? dsImage.offsetWidth / 1920
-      : Math.min(stageRect.width / 1920, stageRect.height / 1080);
-    const offsetX = mobileReadingMode ? dsImage.offsetLeft : (stageRect.width - 1920 * scale) / 2;
-    const offsetY = mobileReadingMode ? dsImage.offsetTop : (stageRect.height - 1080 * scale) / 2;
+      ? imageRect.width / 1920
+      : Math.min(imageRect.width / 1920, imageRect.height / 1080);
+    const renderedWidth = 1920 * scale;
+    const renderedHeight = 1080 * scale;
+    const offsetX = imageRect.left - stageRect.left + (mobileReadingMode ? 0 : (imageRect.width - renderedWidth) / 2);
+    const offsetY = imageRect.top - stageRect.top + (mobileReadingMode ? 0 : (imageRect.height - renderedHeight) / 2);
     document.querySelectorAll(".ds-hotspot").forEach((button) => {
       button.style.left = (offsetX + Number(button.dataset.x) * scale) + "px";
       button.style.top = (offsetY + Number(button.dataset.y) * scale) + "px";
       button.style.width = (Number(button.dataset.width) * scale) + "px";
       button.style.height = (Number(button.dataset.height) * scale) + "px";
     });
+  }
+
+  function scheduleDsHotspots() {
+    requestAnimationFrame(() => requestAnimationFrame(positionDsHotspots));
+    window.setTimeout(positionDsHotspots, 100);
+    window.setTimeout(positionDsHotspots, 260);
+  }
+
+  dsImage?.addEventListener("load", scheduleDsHotspots);
+  if (dsStage && "ResizeObserver" in window) {
+    new ResizeObserver(scheduleDsHotspots).observe(dsStage);
   }
 
   const dsSources = {
@@ -205,7 +219,7 @@
     });
   });
 
-  window.addEventListener("resize", () => { fitCanvas(); positionDsHotspots(); });
+  window.addEventListener("resize", () => { fitCanvas(); scheduleDsHotspots(); });
   reduceMotion.addEventListener?.("change", syncCoverCarousel);
   window.addEventListener("hashchange", () => goTo(indexFromHash()));
   fitCanvas();
