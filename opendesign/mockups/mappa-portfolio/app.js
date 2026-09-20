@@ -432,7 +432,9 @@
   });
 
   document.querySelectorAll("dialog").forEach((dialog) => {
-    dialog.querySelector("[data-close]")?.addEventListener("click", () => dialog.close());
+    dialog.querySelectorAll("[data-close]").forEach((button) => {
+      button.addEventListener("click", () => dialog.close());
+    });
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) dialog.close();
     });

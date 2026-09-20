@@ -124,7 +124,7 @@
           <h2>Site Map × 核心 User Flow</h2>
           <p>把核心任務集中在記錄、確認與回看。</p>
         </div>
-        <button class="inline-link" data-open="sitemap">查看完整 Site Map →</button>
+        <button class="inline-link reveal-media" data-open="sitemap">查看完整 Site Map →</button>
         <div class="flow-grid stagger">
           <article><img src="assets/06-flow-location.png" alt="確認地圖與地點流程線框" /><h3>01 / 確認地圖與地點</h3><p>帶入目前地圖與位置，再由使用者確認。</p></article>
           <article><img src="assets/06-flow-record.png" alt="留下內容流程線框" /><h3>02 / 留下內容</h3><p>文字、照片、聲音或影片，至少一種就能開始。</p></article>
@@ -173,11 +173,59 @@
             <button class="pill-button" data-open="design-system">查看 Design System →</button>
           </div>
           <div class="system-board reveal-media" aria-label="MAPPA 視覺系統摘要">
-            <div class="system-word"><span>觀察</span><img src="assets/08-observation-accent.svg" alt="" /></div>
-            <div class="swatches"><i></i><i></i><i></i></div>
-            <div class="system-lines"><span></span><span></span><span></span></div>
-            <div class="system-cta">留下觀察</div>
-            <div class="system-nav"><b>⌂</b><b>⌘</b><b>＋</b><b>♙</b></div>
+            <div class="system-preview-header">
+              <div><small>MAPPA DEMO</small><strong>Design System</strong></div>
+              <span>設計總覽</span>
+            </div>
+
+            <div class="system-foundation-grid">
+              <section class="system-panel system-colors">
+                <small>01</small>
+                <h3>品牌色</h3>
+                <p>保留最具辨識度的三個顏色。</p>
+                <div class="system-color-list">
+                  <div><i></i><span><b>MAPPA 綠</b>#0B5A38</span></div>
+                  <div><i></i><span><b>節點橘</b>#E87543</span></div>
+                  <div><i></i><span><b>冷白</b>#FFFEFA</span></div>
+                </div>
+              </section>
+
+              <section class="system-panel system-type">
+                <small>02</small>
+                <h3>文字角色</h3>
+                <p>以使用情境命名，讓層級有明確位置。</p>
+                <div class="system-type-list">
+                  <div><b>頁面標題</b><span>24 / 32 · Medium</span></div>
+                  <div><b>文章標題</b><span>18 / 24 · Medium</span></div>
+                  <div><b>內文</b><span>16 / 26 · Regular</span></div>
+                  <div><b>操作文字</b><span>14 / 21 · Medium</span></div>
+                </div>
+              </section>
+
+              <section class="system-panel system-sizing">
+                <small>03</small>
+                <h3>版面與元件尺寸</h3>
+                <p>以 390 × 844 mobile viewport 為基準。</p>
+                <div class="system-size-list">
+                  <span><b>20px</b>頁面留白</span>
+                  <span><b>48px</b>區塊間距</span>
+                  <span><b>16 / 24px</b>卡片圓角</span>
+                  <span><b>48px</b>控制項高度</span>
+                  <span><b>44px</b>最小點擊區</span>
+                  <span><b>Full</b>膠囊圓角</span>
+                </div>
+              </section>
+            </div>
+
+            <section class="system-components-preview">
+              <div class="system-component-title"><small>04</small><h3>核心元件</h3></div>
+              <div class="system-component-samples">
+                <span class="system-primary-button">留下觀察</span>
+                <span class="system-secondary-button">從裝置選擇</span>
+                <span class="system-input">寫下你觀察到的事⋯</span>
+                <span class="system-bottom-nav"><b>首頁</b><b>地圖</b><b>＋</b><b>我的</b></span>
+              </div>
+            </section>
           </div>
         </div>
         
@@ -193,9 +241,9 @@
         </div>
         <div class="growth-flow stagger">
           <article><div class="reward-tag">成就獎勵 · 新種子</div><img src="assets/09-seed.png" alt="種子" /><small>01 / UNLOCK</small><h3>解鎖新種子</h3><p>完成一項觀察成就，<br />獲得新的種子，記下探索里程碑。</p></article>
-          <span class="flow-arrow">→</span>
+          <span class="flow-arrow" aria-hidden="true">→</span>
           <article><img src="assets/09-sprout.png" alt="發芽" /><small>02 / GROW</small><h3>讓觀察使它發芽</h3><p>持續記錄同一地點，<br />有效觀察讓零散片段逐漸連結。</p></article>
-          <span class="flow-arrow">→</span>
+          <span class="flow-arrow" aria-hidden="true">→</span>
           <article><img src="assets/09-tree.png" alt="回憶樹" /><small>03 / MEMORY TREE</small><h3>長成回憶樹</h3><p>觀察累積成可回望的故事，<br />成為朋友共同擁有的地方記憶。</p></article>
         </div>
         <div class="decision-note reveal-group"><div><small>DESIGN DECISION / 成長規則</small><strong>新種子回應探索成就，成長回應有效觀察。</strong></div><p>完成觀察成就解鎖新的種子；之後只有持續留下有效觀察才會發芽、成長。留言與瀏覽保留交流價值，不形成排名。</p></div>
@@ -311,6 +359,7 @@
   <dialog id="design-system-dialog" class="annex-dialog design-system-dialog">
     <div class="ds-stage">
       <img id="ds-image" src="assets/ds-overview.png" alt="MAPPA Design System 設計總覽" />
+      <button class="ds-mobile-close" data-close aria-label="關閉 Design System">×</button>
       <div class="ds-hotspots">
         <div class="ds-tabs" role="tablist" aria-label="Design System 頁面" data-x="1306" data-y="43">
           <span class="ds-tab-indicator" aria-hidden="true"></span>
